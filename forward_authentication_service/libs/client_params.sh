@@ -155,7 +155,7 @@ header() {
 		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 		<link rel=\"shortcut icon\" href=\"$url/$imagepath\" type=\"image/x-icon\">
 		<link rel=\"stylesheet\" type=\"text/css\" href=\"$url/splash.css\">
-		<title>$gatewaynamehtml Client Session Status</title>
+		<title>Client Session Status</title>
 		</head>
 		<body>
 		<div class=\"offset\">
@@ -345,9 +345,9 @@ if [ "$status" = "status" ] || [ "$status" = "err511" ]; then
 		parse_variables
 	fi
 
-	header
+	# header
 	body
-	footer
+	# footer
 	exit 0
 else
 	exit 1

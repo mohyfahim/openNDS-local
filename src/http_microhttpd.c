@@ -1912,7 +1912,7 @@ static int send_error(struct MHD_Connection *connection, int error)
 			break;
 		}
 
-		cmd = safe_calloc(SMALL_BUF);
+		/* cmd = safe_calloc(SMALL_BUF);
 		safe_snprintf(cmd, SMALL_BUF, "%s err511 '%s'", config->status_path, ip);
 
 		if (execute_ret_url_encoded(page_511, HTMLMAXSIZE - 1, cmd) == 0) {
@@ -1925,7 +1925,11 @@ static int send_error(struct MHD_Connection *connection, int error)
 			return ret;
 		}
 
-		free(cmd);
+		free(cmd); */
+		safe_snprintf(page_511,HTMLMAXSIZE,"<h1>To login, click or tap the Continue button</h1>\
+			<form action=\"http://192.168.2.1/login\" method=\"get\" target=\"_blank\">\
+			<input type=\"submit\" value=\"Continue\" >\
+			</form>");
 
 		response = MHD_create_response_from_buffer(strlen(page_511), (char *)page_511, MHD_RESPMEM_MUST_FREE);
 

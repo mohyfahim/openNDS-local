@@ -440,7 +440,7 @@ enum MHD_Result libmicrohttpd_cb(
 
 
 	// check if client ip is on our subnet
-	testcmd = safe_calloc(SMALL_BUF);
+	/*testcmd = safe_calloc(SMALL_BUF);
 	safe_snprintf(testcmd, SMALL_BUF, "/usr/lib/opennds/libopennds.sh get_interface_by_ip \"%s\"", ip);
 	msg = safe_calloc(SMALL_BUF);
 	rc = execute_ret_url_encoded(msg, SMALL_BUF, testcmd);
@@ -460,7 +460,7 @@ enum MHD_Result libmicrohttpd_cb(
 		debug(LOG_DEBUG, "ip subnet test failed: Continuing...");
 	}
 
-	free (msg);
+	free (msg);*/
 
 	rc = get_client_mac(mac, ip);
 	if (rc != 0) {
@@ -1453,7 +1453,7 @@ static char *construct_querystring(struct MHD_Connection *connection, t_client *
 
 				clientif = safe_calloc(STATUS_BUF);
 
-				get_client_interface(clientif, STATUS_BUF, client->mac);
+				// get_client_interface(clientif, STATUS_BUF, client->mac);
 				debug(LOG_DEBUG, "clientif: [%s] url_encoded_gw_name: [%s]", clientif, config->url_encoded_gw_name);
 
 				query_str = safe_calloc(QUERYMAXLEN);
@@ -1471,7 +1471,7 @@ static char *construct_querystring(struct MHD_Connection *connection, t_client *
 					config->gw_address, QUERYSEPARATOR,
 					config->gw_mac, QUERYSEPARATOR,
 					originurl, QUERYSEPARATOR,
-					clientif, QUERYSEPARATOR,
+					"clientif", QUERYSEPARATOR,
 					config->themespec_path, QUERYSEPARATOR,
 					config->custom_params,
 					config->custom_vars,
@@ -1488,7 +1488,7 @@ static char *construct_querystring(struct MHD_Connection *connection, t_client *
 					query_str_b64
 				);
 
-				if (config->login_option_enabled >=1) {
+				if (config->login_option_enabled >=1 && false) {
 					if (client->cid) {
 						cidgood = 1;
 						cidfile = safe_calloc(SMALL_BUF);

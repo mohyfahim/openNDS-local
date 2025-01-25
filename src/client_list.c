@@ -227,7 +227,7 @@ client_list_add_client(const char mac[], const char ip[])
 	}
 
 	// check if client ip was allocated by dhcp
-	libcmd = safe_calloc(SMALL_BUF);
+	/*libcmd = safe_calloc(SMALL_BUF);
 	safe_snprintf(libcmd, SMALL_BUF, "/usr/lib/opennds/libopennds.sh dhcpcheck \"%s\"", ip);
 	msg = safe_calloc(SMALL_BUF);
 	rc = execute_ret_url_encoded(msg, SMALL_BUF, libcmd);
@@ -238,7 +238,7 @@ client_list_add_client(const char mac[], const char ip[])
 		// IP address is not in the dhcp database
 		debug(LOG_NOTICE, "IP not allocated by dhcp [%s]", ip);
 		return NULL;
-	}
+	}*/
 
 	client = client_list_find(mac, ip);
 

@@ -733,7 +733,7 @@ setup_from_config(void)
 		free(fasssl);
 
 		// Start the authmon daemon if configured for Level >= 3
-		if (config->fas_key && config->fas_secure_enabled >= 3) {
+		/* if (config->fas_key && config->fas_secure_enabled >= 3) {
 
 			// Get the sha256 digest of gatewayname
 			safe_asprintf(&fasssl,
@@ -781,7 +781,7 @@ setup_from_config(void)
 
 			free(fasssl);
 			free(gatewayhash);
-		}
+		} */
 
 		// Report the FAS FQDN
 		if (config->fas_remotefqdn) {
@@ -926,6 +926,7 @@ main_loop(int argc, char **argv)
 
 	ignore_sigpipe();
 
+/*
 	// Start watchdog, client statistics and timeout clean-up thread
 	result = pthread_create(&tid_client_check, NULL, thread_client_timeout_check, NULL);
 	if (result != 0) {
@@ -933,7 +934,7 @@ main_loop(int argc, char **argv)
 		termination_handler(0);
 	}
 	pthread_detach(tid_client_check);
-
+*/
 	// Start control thread
 	result = pthread_create(&tid, NULL, thread_ndsctl, (void *)(config->ndsctl_sock));
 	if (result != 0) {
@@ -942,12 +943,12 @@ main_loop(int argc, char **argv)
 	}
 
 	debug(LOG_NOTICE, "openNDS is now running.\n");
-	safe_asprintf(&cmd, "/usr/lib/opennds/libopennds.sh \"auth_restore\" &");
+	/* safe_asprintf(&cmd, "/usr/lib/opennds/libopennds.sh \"auth_restore\" &");
 	if (system(cmd) != 0) {
 		debug(LOG_ERR, "failure: %s", cmd);
 	}
 	free(cmd);
-
+	*/
 	result = pthread_join(tid, NULL);
 
 	if (result) {

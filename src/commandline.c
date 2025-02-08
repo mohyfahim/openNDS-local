@@ -46,7 +46,7 @@ static void usage(void);
 static void
 usage(void)
 {
-	printf("Usage: opennds [options]\n"
+	printf("Usage: opennds new [options]\n"
 		"\n"
 		"  -f          Run in foreground\n"
 		"  -b          Run in background\n"
